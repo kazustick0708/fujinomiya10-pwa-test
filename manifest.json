@@ -1,0 +1,8 @@
+{
+  "name": "富士宮市10分団・通知バッジテスト",
+  "short_name": "10分団通知テスト",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
