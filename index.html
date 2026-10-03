@@ -10,102 +10,44 @@
   <title>富士宮市10分団・通知バッジテスト</title>
 </head>
 
-  <body>
-  <button id="notifyButton">通知テスト</button>
-
-<script>
-document.getElementById("notifyButton").addEventListener("click", async function() {
-  if (!("Notification" in window)) {
-    alert("この環境では通知に対応していません。");
-    return;
-  }
-
-  const permission = await Notification.requestPermission();
-
-  if (permission !== "granted") {
-    alert("通知が許可されませんでした。");
-    return;
-  }
-
-  const registration = await navigator.serviceWorker.ready;
-
-  await registration.showNotification(
-    "富士宮市10分団・通知テスト",
-    {
-      body: "通知テストに成功しました。"
-    }
-  );
-});
-</script>
-
-<body>
-
-    <title>富士宮市10分団・通知バッジテスト</title>
-</head>
-
-  <button id="notifyButton">通知テスト</button>
-
-<script>
-document.getElementById("notifyButton").addEventListener("click", async function() {
-  if (!("Notification" in window)) {
-    alert("この環境では通知に対応していません。");
-    return;
-  }
-
-  const permission = await Notification.requestPermission();
-
-  if (permission !== "granted") {
-    alert("通知が許可されませんでした。");
-    return;
-  }
-
-  const registration = await navigator.serviceWorker.ready;
-
-  await registration.showNotification(
-    "富士宮市10分団・通知テスト",
-    {
-      body: "通知テストに成功しました。"
-    }
-  );
-});
-</script>
-
-<body>
-
-<script>
-document.getElementById("notifyButton").addEventListener("click", async function() {
-  if (!("Notification" in window)) {
-    alert("この環境では通知に対応していません。");
-    return;
-  }
-
-  const permission = await Notification.requestPermission();
-
-  if (permission !== "granted") {
-    alert("通知が許可されませんでした。");
-    return;
-  }
-
-  const registration = await navigator.serviceWorker.ready;
-
-  await registration.showNotification(
-    "富士宮市10分団・通知テスト",
-    {
-      body: "通知テストに成功しました。"
-    }
-  );
-});
-</script>
-
 <body>
 
   <h1>富士宮市10分団・通知バッジテスト</h1>
 
   <p>PWAテスト環境</p>
 
- <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js");
-  }
-</script>
+  <button id="notifyButton">通知テスト</button>
 
+  <script>
+    document.getElementById("notifyButton").addEventListener("click", async function() {
+      if (!("Notification" in window)) {
+        alert("この環境では通知に対応していません。");
+        return;
+      }
+
+      const permission = await Notification.requestPermission();
+
+      if (permission !== "granted") {
+        alert("通知が許可されませんでした。");
+        return;
+      }
+
+      const registration = await navigator.serviceWorker.ready;
+
+      await registration.showNotification(
+        "富士宮市10分団・通知テスト",
+        {
+          body: "通知テストに成功しました。"
+        }
+      );
+    });
+  </script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js");
+    }
+  </script>
+
+</body>
+</html>
