@@ -72,6 +72,28 @@ document.getElementById("badgeButton").addEventListener("click", async function(
 
 window.__receiveBadgeCount = function(data) {
 
+  window.addEventListener("message", function(event) {
+
+  if (
+    event.origin !== "https://script.google.com" &&
+    event.origin !== "https://script.googleusercontent.com"
+  ) {
+    return;
+  }
+
+  if (
+    !event.data ||
+    event.data.type !== "rescueBadgeCount"
+  ) {
+    return;
+  }
+
+  window.__receiveBadgeCount({
+    count: event.data.count
+  });
+
+});
+
   const count = Number(data.count || 0);
 
   if ("setAppBadge" in navigator) {
@@ -94,17 +116,28 @@ window.__receiveBadgeCount = function(data) {
 document.getElementById("liveBadgeButton")
   .addEventListener("click", function() {
 
+    document.getElementById("liveBadgeButton")
+  .addEventListener("click", function() {
+
     document.getElementById("result").textContent =
       "未対応件数を取得しています……";
 
-    const script =
-  document.createElement("script");
+    const bridgeUrl =
+      "https://script.google.com/macros/s/AKfycbwX0PKpUYqFrTNh1kd0dPdj2LbybxGKFI-5SeBO-ii2dhgKuGJGHtGJ7IpYvdLHg0Y-JQ/exec?page=pwabadgebridge&_=" +
+      Date.now();
 
-script.src =
-  "https://script.google.com/macros/s/AKfycbw8Bdfv9rKbvqozLkHJW6x_H7ugbnzrFLOm2ZFvOvqIz2RuXK6-mjTdoC7zizu13wTDLg/exec?page=badgecount&_=" +
-  Date.now();
+    const bridgeWindow =
+      window.open(
+        bridgeUrl,
+        "_blank"
+      );
 
-document.body.appendChild(script);
+    if (!bridgeWindow) {
+
+      document.getElementById("result").textContent =
+        "中継ページを開けませんでした。";
+
+    }
 
   });
     
