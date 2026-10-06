@@ -72,7 +72,30 @@ document.getElementById("badgeButton").addEventListener("click", async function(
 
 window.__receiveBadgeCount = function(data) {
 
-  window.addEventListener("message", function(event) {
+  const count = Number(data.count || 0);
+
+  if ("setAppBadge" in navigator) {
+
+    navigator.setAppBadge(count);
+
+    document.getElementById("result").textContent =
+      "実際の未対応" + count + "件をバッジに設定しました。";
+
+  } else {
+
+    document.getElementById("result").textContent =
+      "この環境ではホーム画面バッジに対応していません。";
+
+  }
+
+};
+
+
+// --------------------------------------------------
+// Apps Scriptから送られた未対応件数を受け取る
+// --------------------------------------------------
+
+window.addEventListener("message", function(event) {
 
   if (
     event.origin !== "https://script.google.com" &&
@@ -114,9 +137,6 @@ window.__receiveBadgeCount = function(data) {
 
 
 document.getElementById("liveBadgeButton")
-  .addEventListener("click", function() {
-
-    document.getElementById("liveBadgeButton")
   .addEventListener("click", function() {
 
     document.getElementById("result").textContent =
