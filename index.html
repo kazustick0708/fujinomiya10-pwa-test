@@ -117,25 +117,6 @@ window.addEventListener("message", function(event) {
 
 });
 
-  const count = Number(data.count || 0);
-
-  if ("setAppBadge" in navigator) {
-
-    navigator.setAppBadge(count);
-
-    document.getElementById("result").textContent =
-      "実際の未対応" + count + "件をバッジに設定しました。";
-
-  } else {
-
-    document.getElementById("result").textContent =
-      "この環境ではホーム画面バッジに対応していません。";
-
-  }
-
-};
-
-
 document.getElementById("liveBadgeButton")
   .addEventListener("click", function() {
 
