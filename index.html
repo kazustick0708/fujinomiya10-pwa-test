@@ -22,6 +22,8 @@
 
   <button id="liveBadgeButton">実際の未対応件数をバッジ表示</button>
 
+ <div id="result"></div> 
+
   <script>
 document.getElementById("badgeButton").addEventListener("click", async function() {
   if ("setAppBadge" in navigator) {
