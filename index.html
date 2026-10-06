@@ -18,6 +18,19 @@
 
   <button id="notifyButton">通知テスト</button>
 
+  <button id="badgeButton">バッジテスト</button>
+
+  <script>
+document.getElementById("badgeButton").addEventListener("click", async function() {
+  if ("setAppBadge" in navigator) {
+    await navigator.setAppBadge(5);
+    alert("バッジを5に設定しました。");
+  } else {
+    alert("この環境ではバッジに対応していません。");
+  }
+});
+</script>
+
   <script>
     document.getElementById("notifyButton").addEventListener("click", async function() {
       if (!("Notification" in window)) {
