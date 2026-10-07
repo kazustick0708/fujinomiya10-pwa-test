@@ -126,13 +126,10 @@ document.getElementById("liveBadgeButton")
     const bridgeUrl =
       "https://script.google.com/macros/s/AKfycbzTQp6_ymsC5KSN7OO57OCT2IEAhsSEGrbPvI-4JWpN/exec?page=pwabadgebridge&_=" +
       Date.now();
-
-    const bridgeWindow =
-  window.open(
-    bridgeUrl,
-    "_blank",
-    "noopener=false"
-  );
+window.open(
+  bridgeUrl,
+  "_blank"
+);
 
     if (!bridgeWindow) {
 
