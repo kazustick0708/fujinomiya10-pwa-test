@@ -128,10 +128,11 @@ document.getElementById("liveBadgeButton")
       Date.now();
 
     const bridgeWindow =
-      window.open(
-        bridgeUrl,
-        "_blank"
-      );
+  window.open(
+    bridgeUrl,
+    "_blank",
+    "noopener=false"
+  );
 
     if (!bridgeWindow) {
 
