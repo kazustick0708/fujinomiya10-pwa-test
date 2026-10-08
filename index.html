@@ -123,14 +123,16 @@ document.getElementById("liveBadgeButton")
     document.getElementById("result").textContent =
       "未対応件数を取得しています……";
 
-    const script =
-      document.createElement("script");
+    const iframe =
+      document.createElement("iframe");
 
-    script.src =
+    iframe.style.display = "none";
+
+    iframe.src =
       "https://script.google.com/macros/s/AKfycbzTQp6_ymsC5KSN7OO57OCT2IEAhsSEGrbPvI-4JWpN/exec?page=badgecount&_=" +
       Date.now();
 
-    document.body.appendChild(script);
+    document.body.appendChild(iframe);
 
   });
     
