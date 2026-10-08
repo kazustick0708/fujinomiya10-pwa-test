@@ -123,20 +123,14 @@ document.getElementById("liveBadgeButton")
     document.getElementById("result").textContent =
       "未対応件数を取得しています……";
 
-    const bridgeUrl =
-      "https://script.google.com/macros/s/AKfycbzTQp6_ymsC5KSN7OO57OCT2IEAhsSEGrbPvI-4JWpN/exec?page=pwabadgebridge&_=" +
+    const script =
+      document.createElement("script");
+
+    script.src =
+      "https://script.google.com/macros/s/AKfycbzTQp6_ymsC5KSN7OO57OCT2IEAhsSEGrbPvI-4JWpN/exec?page=badgecount&_=" +
       Date.now();
-window.open(
-  bridgeUrl,
-  "_blank"
-);
 
-    if (!bridgeWindow) {
-
-      document.getElementById("result").textContent =
-        "中継ページを開けませんでした。";
-
-    }
+    document.body.appendChild(script);
 
   });
     
