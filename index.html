@@ -122,15 +122,22 @@ document.getElementById("liveBadgeButton")
 
     document.getElementById("result").textContent =
       "未対応件数を取得しています……";
-
+  
     const script =
       document.createElement("script");
+
+    script.onerror = function() {
+      document.getElementById("result").textContent =
+        "診断結果：外部スクリプトの読み込みに失敗しました。"
+        + " 通信環境やアクセス先を確認してください。";
+    };
 
     script.src =
       "https://script.google.com/macros/s/AKfycbzTQp6_ymsC5KSN7OO57OCT2IEAhsSEGrbPvI-4JWpN/exec?page=badgecount&_=" +
       Date.now();
 
     document.body.appendChild(script);
+
 
   });
     
