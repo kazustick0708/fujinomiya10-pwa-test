@@ -126,18 +126,49 @@ document.getElementById("liveBadgeButton")
     const script =
       document.createElement("script");
 
-    script.onerror = function() {
-      document.getElementById("result").textContent =
-        "診断結果：外部スクリプトの読み込みに失敗しました。"
-        + " 通信環境やアクセス先を確認してください。";
-    };
+script.onerror = function() {
 
-script.src =
-      "https://script.google.com/macros/s/AKfycbwH2Km1P0pQ9NheC2j8KvceeFiHfp4CU9XRlJ1yKa-GTrGf3px-Gxl4k3Q_8BTo0ISD/exec?page=badgecount&_=" +
-      Date.now();
-    document.body.appendChild(script);
+  // 再試行は1回だけ
+  if (!script.dataset.retried) {
+
+    script.dataset.retried = "true";
+
+    
+document.getElementById("liveBadgeButton")
+  .addEventListener("click", function() {
+
+    const result = document.getElementById("result");
+
+    result.textContent = "未対応件数を取得しています……";
+
+    function loadBadgeCount(isRetry) {
+      const script = document.createElement("script");
+
+      script.onerror = function() {
+        script.remove();
+
+        if (!isRetry) {
+          result.textContent =
+            "外部スクリプトの読み込みに失敗しました。1回だけ再試行します……";
+
+          loadBadgeCount(true);
+        } else {
+          result.textContent =
+            "診断結果：再試行しても外部スクリプトの読み込みに失敗しました。";
+        }
+      };
+
+      script.src =
+        "https://script.google.com/macros/s/AKfycbwH2Km1P0pQ9NheC2j8KvceeFiHfp4CU9XRlJ1yKa-GTrGf3px-Gxl4k3Q_8BTo0ISD/exec?page=badgecount&_=" +
+        Date.now();
+
+      document.body.appendChild(script);
+    }
+
+    loadBadgeCount(false);
 
   });
+    
     
   </script>
 
