@@ -25,6 +25,31 @@
  <div id="result"></div> 
 
   <script>
+window.__receiveBadgeCount = async function(data) {
+  const result = document.getElementById("result");
+
+  if (!data || typeof data.count !== "number") {
+    result.textContent = "未対応件数を正しく取得できませんでした。";
+    return;
+  }
+
+  try {
+    if ("setAppBadge" in navigator) {
+      await navigator.setAppBadge(data.count);
+      result.textContent =
+        "実際の未対応件数 " + data.count + " 件をバッジに設定しました。";
+    } else {
+      result.textContent =
+        "未対応件数 " + data.count + " 件を取得しましたが、この環境はバッジに対応していません。";
+    }
+  } catch (error) {
+    result.textContent =
+      "未対応件数 " + data.count + " 件を取得しましたが、バッジ設定に失敗しました。";
+  }
+};
+</script>
+
+  <script>
 document.getElementById("badgeButton").addEventListener("click", async function() {
   if ("setAppBadge" in navigator) {
     await navigator.setAppBadge(5);
@@ -44,7 +69,7 @@ document.getElementById("badgeButton").addEventListener("click", async function(
     result.textContent = "未対応件数を取得しています……";
 
     function loadBadgeCount(isRetry) {
-      const script = document.createElement("script");
+      const script = document.createElement("script")loadBadgeCount;
 
       script.onerror = function() {
         script.remove();
